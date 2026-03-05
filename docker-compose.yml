@@ -19,14 +19,17 @@ services:
       - common.env
       - backend.env
     environment:
-      - DASHBOARD_URL=http://localhost:9000/
-      - ALLOWED_HOSTS=localhost,127.0.0.1,api
+      - DASHBOARD_URL=https://app.sophiecoffe.com/
+      - ALLOWED_HOSTS=localhost,127.0.0.1,api,app.sophiecoffe.com,api.app.sophiecoffe.com,sophiecoffe.com
+      - ALLOWED_CLIENT_HOSTS=app.sophiecoffe.com,sophiecoffe.com
 
   dashboard:
     image: ghcr.io/saleor/saleor-dashboard:latest
     ports:
       - 9000:80
     restart: unless-stopped
+    environment:
+      - API_URL=https://api.app.sophiecoffe.com/graphql/
 
   db:
     image: library/postgres:15-alpine
