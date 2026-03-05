@@ -15,6 +15,7 @@ services:
     volumes:
       # shared volume between worker and api for media
       - saleor-media:/app/media
+      - ./private.pem:/app/private.pem:ro
     env_file:
       - common.env
       - backend.env
@@ -70,6 +71,7 @@ services:
     volumes:
       # shared volume between worker and api for media
       - saleor-media:/app/media
+      - ./private.pem:/app/private.pem:ro
 
   jaeger:
     image: jaegertracing/jaeger
